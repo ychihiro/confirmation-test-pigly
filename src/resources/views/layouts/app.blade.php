@@ -16,14 +16,14 @@
                 <h1 class="header-logo__text logo">PiGLy</h1>
             </a>
         <div class="header__actions">
-            <div class="action">
+            <div class="header__action">
                 <img src="/images/settings-icon.svg" alt="設定アイコン">
-                <a href="/settings" class="action-button">目標体重設定</a>
+                <a href="/settings" class="header__action-button">目標体重設定</a>
             </div>
-            <form class="action" method="post" action="/logout">
+            <form class="header__action" method="post" action="/logout">
                 @csrf
                 <img src="/images/logout-icon.svg" alt="ログアウトアイコン">
-                <button type="submit" class="action-button">ログアウト</button>
+                <button type="submit" class="header__action-button">ログアウト</button>
             </form>
         </div>
         </header>
