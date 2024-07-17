@@ -13,7 +13,7 @@ class CreateWeightLogsTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->date('date');
             $table->decimal('weight', 4, 1);
-            $table->integer('calories')->nullable();
+            $table->integer('calorie')->nullable();
             $table->time('exercise_time')->nullable();
             $table->text('exercise_content')->nullable();
             $table->timestamps();
