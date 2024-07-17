@@ -1,18 +1,19 @@
 @extends('layouts.auth')
 
 @section('title', '新規会員登録')
-@section('label', 'STEP1 ユーザー情報')
 
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/register/step1.css') }}">
 @endsection
 
 @section('content')
+<p class="step">STEP1 ユーザー情報</p>
+
 <form action="/register" method="post" class="registration__form">
     @csrf
     <div class="form__input-box">
-        <label for="name" class="label">お名前</label>
-        <input type="text" id="name" name="name" class="input" placeholder="名前を入力">
+        <label for="name" class="form__label">お名前</label>
+        <input type="text" id="name" name="name" class="form__input" placeholder="名前を入力">
         <div class="form__error">
             @error('name')
             {{ $message }}
@@ -20,8 +21,8 @@
         </div>
     </div>
     <div class="form__input-box">
-        <label for="email" class="label">メールアドレス</label>
-        <input type="text" id="email" name="email" class="input" placeholder="メールアドレスを入力">
+        <label for="email" class="form__label">メールアドレス</label>
+        <input type="text" id="email" name="email" class="form__input" placeholder="メールアドレスを入力">
         <div class="form__error">
             @error('email')
             {{ $message }}
@@ -29,8 +30,8 @@
         </div>
     </div>
     <div class="form__input-box">
-        <label for="password" class="label">パスワード</label>
-        <input type="text" id="password" name="password" class="input" placeholder="パスワードを入力">
+        <label for="password" class="form__label">パスワード</label>
+        <input type="text" id="password" name="password" class="form__input" placeholder="パスワードを入力">
         <div class="form__error">
             @error('password')
             {{ $message }}

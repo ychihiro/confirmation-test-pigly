@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <a href="/management" class="header__logo">
+            <a href="/dashboard" class="header__logo">
                 <h1 class="header-logo__text logo">PiGLy</h1>
             </a>
         <div class="header__actions">

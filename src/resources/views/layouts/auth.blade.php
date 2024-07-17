@@ -15,7 +15,6 @@
             <div class="auth__title-box">
                 <h1 class="auth__logo logo">PiGLy</h1>
                 <p class="auth__title">@yield('title')</p>
-                <p class="auth__label">@yield('label')</p>
             </div>
             @yield('content')
         </div>

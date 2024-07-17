@@ -10,8 +10,8 @@
 <form action="/login" method="post" class="login__form">
     @csrf
     <div class="form__input-box">
-        <label for="email" class="label">メールアドレス</label>
-        <input type="text" id="email" name="email" class="input" placeholder="メールアドレスを入力">
+        <label for="email" class="form__label">メールアドレス</label>
+        <input type="text" id="email" name="email" class="form__input" placeholder="メールアドレスを入力">
         <div class="form__error">
             @error('email')
             {{ $message }}
@@ -19,8 +19,8 @@
         </div>
     </div>
     <div class="form__input-box">
-        <label for="password" class="label">パスワード</label>
-        <input type="text" id="password" name="password" class="input" placeholder="パスワードを入力">
+        <label for="password" class="form__label">パスワード</label>
+        <input type="text" id="password" name="password" class="form__input" placeholder="パスワードを入力">
         <div class="form__error">
             @error('password')
             {{ $message }}
