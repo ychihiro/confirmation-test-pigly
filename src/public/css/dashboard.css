@@ -1,0 +1,155 @@
+/* 統計情報 */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.stats__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 10px;
+}
+
+.stats__item:not(:first-child) {
+    border-left: 1px solid #cdcdcd;
+}
+
+.stats__value {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 60px;
+    text-align: left;
+}
+
+.stats__unit {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* 体重記録 */
+.weight-log {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.weight-log__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weight-log__filter {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.weight-log__search-button {
+    color: #ffffff;
+    background-color: #919191;
+    border-radius: 4px;
+    padding: 10px 30px;
+    flex-shrink: 0;
+}
+
+.weight-log__add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* テーブル */
+.weight-logs__table {
+    position: relative;
+    width: 100%;
+}
+
+.table__header::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px; /* 罫線の太さ */
+    left: 0;
+    margin-top: -2px; /* 罫線の太さの半分のネガティブ値 */
+    background: linear-gradient(90deg, #a3a6e1 0%, #ffabd9 100%);
+}
+
+.table__header-cell,
+.table__body-cell {
+    line-height: 60px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.table__header-cell {
+    font-weight: 600;
+}
+
+.table__header-cell__date,
+.table__body-cell__date {
+    text-align: left;
+}
+
+/* モーダル */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition:
+        visibility 0.3s,
+        opacity 0.3s;
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__overlay {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal__inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    height: 90vh;
+    overflow-y: scroll;
+    transform: translate(-50%, -50%);
+}
+
+.modal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 20px;
+}
+
+.modal__close-button {
+    color: #000000;
+    text-align: center;
+}

@@ -10,6 +10,7 @@
 
 a {
     color: #2c99ff;
+    text-decoration: none;
 }
 
 /* ロゴ */
@@ -47,13 +48,49 @@ a {
     margin-top: -10px;
 }
 
+.form__textarea {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #e0dfde;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.input-with-unit .input {
+    width: 100%;
+}
+
+.label.required::after {
+    content: "必須";
+    background-color: #f65a5a;
+    font-size: 12px;
+    color: #ffffff;
+    margin-left: 10px;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
 /* ボタン */
 .button-primary {
     font-weight: 600;
     min-width: 200px;
     height: 50px;
+    cursor: pointer;
     padding: 10px;
     border-radius: 12px;
     background: linear-gradient(90deg, #a3a6e1 0%, #ffabd9 100%);
     color: #ffffff;
+}
+
+.button-secondary {
+    font-weight: 600;
+    min-width: 200px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 12px;
+    background: #e0dfde;
 }

@@ -17,9 +17,11 @@
     text-decoration: none;
 }
 
-.header__actions {
+.header__actions,
+.modal__actions {
     display: flex;
     gap: 20px;
+    justify-content: center;
 }
 
 .header__action {
