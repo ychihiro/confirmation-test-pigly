@@ -14,7 +14,7 @@ class WeightLogFactory extends Factory
             'date' => $this->faker->unique()->dateTimeBetween('-2 month', 'now'),
             'weight' => $this->faker->randomFloat(1, 40, 100),
             'calorie' => $this->faker->numberBetween(1000, 3000),
-            'exercise_time' => $this->faker->time('i:s'),
+            'exercise_time' => $this->faker->time('H:i'),
             'exercise_content' => $this->faker->text(),
         ];
     }
