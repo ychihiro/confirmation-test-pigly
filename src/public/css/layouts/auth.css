@@ -5,6 +5,7 @@
     padding: 64px;
     background: url("/images/auth_background.jpeg");
     background-size: cover;
+    min-height: 100vh;
 }
 
 .auth__container {
