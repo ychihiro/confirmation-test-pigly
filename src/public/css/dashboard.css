@@ -55,6 +55,11 @@
     gap: 10px;
 }
 
+.button__actions {
+    display: flex;
+    gap: 10px;
+}
+
 .weight-log__search-button {
     color: #ffffff;
     background-color: #919191;

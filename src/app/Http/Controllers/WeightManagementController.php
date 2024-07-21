@@ -15,9 +15,38 @@ class WeightManagementController extends Controller
         $weightLogs = WeightLog::where('user_id', $user->id)->orderBy('date', 'desc')->paginate(5);
 
         foreach ($weightLogs as $weightLog) {
-            $weightLog->date = Carbon::parse($weightLog->date)->format('Y/m/d');
+            $weightLog->date = Carbon::parse($weightLog->date);
+            $weightLog->exercise_time = Carbon::parse($weightLog->exercise_time);
         }
 
         return view('dashboard', ['weightLogs' => $weightLogs]);
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->has('reset')) {
+            return redirect('/weight-logs/dashboard');
+        }
+
+        $user = Auth::user();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $query = WeightLog::where('user_id', $user->id);
+
+        if(!empty($startDate)) {
+            $query->whereDate('date', '>=', $startDate);
+        }
+
+        if(!empty($endDate)) {
+            $query->whereDate('date', '<=', $endDate);
+        }
+
+        $query->orderBy('date', 'desc');
+
+        $weightLogs = $query->paginate(5);
+        $weightLogCount = $query->count();
+
+    return view('dashboard', compact('weightLogs', 'startDate', 'endDate', 'weightLogCount'));
     }
 }

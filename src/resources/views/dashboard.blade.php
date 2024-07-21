@@ -24,44 +24,59 @@
     </div>
 
     <div class="weight-log">
-        <form class="weight-log__header">
+        <form action="/weight-logs/search" method="get" class="weight-log__header">
             <div class="weight-log__filter">
                 <div class="form__input-box">
-                    <input type="date" id="start-date" name="start-date" class="form__input">
+                    <input type="date" id="start-date" name="start_date" class="form__input" value="{{request('start_date')}}">
                 </div>
                 <span>~</span>
                 <div class="form__input-box">
-                    <input type="date" id="end-date" name="end-date" class="form__input">
+                    <input type="date" id="end-date" name="end_date" class="form__input" value="{{request('end_date')}}">
                 </div>
-                <button class="weight-log__search-button">検索</button>
+                <div class="button__actions">
+                  <button class="weight-log__search-button">検索</button>
+                    @if (isset($startDate) || isset($endDate))
+                      <input name="reset" class="weight-log__search-button" type="submit" value="リセット"></input>
+                    @endif
+                </div>
             </div>
             <a href="#modal" class="button-primary weight-log__add-button">データ追加</a>
         </form>
+
+        <div>
+          @if (isset($startDate) && isset($endDate))
+            <p>{{\Carbon\Carbon::parse($startDate)->format('Y年m月d日')}} <span>~</span> {{\Carbon\Carbon::parse($endDate)->format('Y年m月d日')}}の検索結果 <span>{{$weightLogCount}}件</span></p>
+          @elseif (isset($startDate))
+            <p>{{\Carbon\Carbon::parse($startDate)->format('Y年m月d日')}}<span>~</span>の検索結果 <span>{{$weightLogCount}}件</span></p>
+          @elseif (isset($endDate))
+            <p><span>~</span>{{\Carbon\Carbon::parse($endDate)->format('Y年m月d日')}}の検索結果 <span>{{$weightLogCount}}件</span></p>
+          @endif
+        </div>
 
         <table class="weight-logs__table">
             <thead class="table__header">
                 <tr class="table__header-row">
                     <th class="table__header-cell table__header-cell__date">日付</th>
                     <th class="table__header-cell">体重</th>
-                    <th class="table__header-cell">食事摂取カロリー</th>
+                    <th class="table__header-cell">食事摂取量カロリー</th>
                     <th class="table__header-cell">運動時間</th>
                     <th class="table__header-cell"></th>
                 </tr>
             </thead>
             <tbody class="table__body">
-                @for ($i = 0; $i < 10; $i++)
+                @foreach($weightLogs as $weightLog)
                 <tr class="table__body-row">
-                    <td class="table__body-cell table__body-cell__date">2024/01/01</td>
-                    <td class="table__body-cell">46.5</td>
-                    <td class="table__body-cell">1200kcal</td>
-                    <td class="table__body-cell">00:15</td>
+                    <td class="table__body-cell table__body-cell__date">{{\Carbon\Carbon::parse($weightLog->date)->format('Y/m/d')}}</td>
+                    <td class="table__body-cell">{{$weightLog->weight}} kg</td>
+                    <td class="table__body-cell">{{$weightLog->calorie}} kcal</td>
+                    <td class="table__body-cell">{{$weightLog->exercise_time}}</td>
                     <td class="table__body-cell"><a href="/"><img src="{{ asset('images/weight-log-edit-icon.svg') }}" alt="編集アイコン"></a></td>
                 </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
 
-        {{-- {{ $weightLogs->links() }} --}}
+        <!-- {{ $weightLogs->links() }} -->
     </div>
 
     <div class="modal" id="modal">
@@ -89,7 +104,7 @@
             </div>
             <div class="form__input-box">
                 <label for="time" class="form__label">運動時間</label>
-                <input type="number" id="time" name="time" class="form__input">
+                <input type="time" id="time" name="time" class="form__input">
             </div>
             <div class="form__input-box">
                 <label for="activity" class="form__label">運動内容</label>
