@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WeightManagementRequest;
 use App\Models\WeightLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,6 +21,23 @@ class WeightManagementController extends Controller
         }
 
         return view('dashboard', ['weightLogs' => $weightLogs]);
+    }
+
+    public function create(WeightManagementRequest $request)
+    {
+        $user = Auth::user();
+        $properties = $request->only(['date', 'weight', 'calorie', 'time', 'content']);
+
+        WeightLog::create([
+            'user_id' => $user->id,
+            'date' => $properties['date'],
+            'weight' => $properties['weight'],
+            'calorie' => $properties['calorie'],
+            'exercise_time' => $properties['time'],
+            'exercise_content' => $properties['content'],
+        ]);
+
+        return redirect('/weight-logs/dashboard');
     }
 
     public function search(Request $request)

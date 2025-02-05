@@ -79,10 +79,12 @@
         <!-- {{ $weightLogs->links() }} -->
     </div>
 
+    <!-- 登録画面 -->
     <div class="modal" id="modal">
       <a href="#!" class="modal__overlay"></a>
         <div class="modal__inner">
-          <form class="modal__content">
+          <form action="/weight-logs/create" method="post" class="modal__content">
+            @csrf
             <h1>Weight Log</h1>
             <div class="form__input-box">
               <label for="date" class="form__label required">日付</label>
@@ -91,29 +93,29 @@
             <div class="form__input-box">
               <label for="weight" class="form__label required">体重</label>
               <div class="input-with-unit">
-              <input type="number" id="weight" name="weight" class="form__input">
+              <input type="text" id="weight" name="weight" class="form__input" placeholder="50.0">
               <span>kg</span>
               </div>
             </div>
             <div class="form__input-box">
               <label for="calorie" class="form__label">摂取カロリー</label>
               <div class="input-with-unit">
-                <input type="number" id="calorie" name="calorie" class="form__input">
+                <input type="number" id="calorie" name="calorie" class="form__input" placeholder="1200" min="0">
                 <span>kcal</span>
               </div>
             </div>
             <div class="form__input-box">
                 <label for="time" class="form__label">運動時間</label>
-                <input type="time" id="time" name="time" class="form__input">
+                <input type="time" id="time" name="time" class="form__input" value="00:00">
             </div>
             <div class="form__input-box">
-                <label for="activity" class="form__label">運動内容</label>
-                <textarea type="text" id="activity" name="activity" class="form__textarea" placeholder="運動の内容を追加" rows="10"></textarea>
+                <label for="content" class="form__label">運動内容</label>
+                <textarea type="text" id="content" name="content" class="form__textarea" placeholder="運動の内容を追加" rows="10"></textarea>
             </div>
 
             <div class="modal__actions">
               <a href="#" class="button-secondary modal__close-button">戻る</a>
-                <button type="submit" class="button-primary">登録</button>
+              <button type="submit" class="button-primary">登録</button>
             </div>
           </form>
         </div>

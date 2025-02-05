@@ -33,4 +33,12 @@ class UserWeightSettingController extends Controller
 
         return view('dashboard');
     }
+
+    public function show()
+    {
+        $user = Auth::user();
+        $target = WeightTarget::where('user_id', $user->id)->first();
+
+        return view('setting', ['target' => $target]);
+    }
 }
